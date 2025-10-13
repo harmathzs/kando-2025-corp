@@ -1,6 +1,13 @@
-<apex:page >
-  <!-- Begin Default Content REMOVE THIS -->
-  <h1>Congratulations</h1>
-  This is your new Page
-  <!-- End Default Content REMOVE THIS -->
+<apex:page title="Quote Products">
+  <style>
+    
+  </style>
+
+  <apex:pageBlock title="Page block">
+    <apex:pageBlockSection title="User info">
+      <apex:outputText label="User:" value="{!$User.FirstName} {!$User.LastName}" />
+      <apex:outputText label="Profile:" value="{!$Profile.Name}" />
+      <apex:outputText label="Org company:" value="{!$Organization.Name}" />
+    </apex:pageBlockSection>
+  </apex:pageBlock>
 </apex:page>
