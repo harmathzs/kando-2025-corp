@@ -1,4 +1,4 @@
-<apex:page title="Quote Products">
+<apex:page title="Quote Products" standardController="Quote">
   <style>
     
   </style>
@@ -9,5 +9,16 @@
       <apex:outputText label="Profile:" value="{!$Profile.Name}" />
       <apex:outputText label="Org company:" value="{!$Organization.Name}" />
     </apex:pageBlockSection>
+    <apex:pageBlockSection title="Quote info">
+      <apex:outputText label="Quote name:" value="{!quote.Name}" />
+      <apex:outputText label="Opportunity name:" value="{!quote.Opportunity.Name}" />
+    </apex:pageBlockSection>   
+    <apex:pageBlockSection title="Quote Products">
+      <ol>
+        <apex:repeat value="{!quote.QuoteLineItems}" var="qli">
+          <li>{!qli.Id}</li>
+        </apex:repeat>
+      </ol>
+    </apex:pageBlockSection> 
   </apex:pageBlock>
 </apex:page>
