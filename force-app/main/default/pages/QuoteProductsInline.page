@@ -1,6 +1,12 @@
 <apex:page title="Quote Products" standardController="Quote">
   <style>
-    
+    .myTable, .myTable th, .myTable td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    .myTable th, .myTable td {
+      margin: 5px;
+    }
   </style>
 
   <apex:pageBlock title="Page block">
@@ -14,7 +20,7 @@
       <apex:outputText label="Opportunity name:" value="{!quote.Opportunity.Name}" />
     </apex:pageBlockSection>   
     <apex:pageBlockSection title="Quote Products">
-      <table>
+      <table class="myTable">
         <thead>
           <tr>
             <th>#</th>
