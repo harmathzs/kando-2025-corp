@@ -14,11 +14,32 @@
       <apex:outputText label="Opportunity name:" value="{!quote.Opportunity.Name}" />
     </apex:pageBlockSection>   
     <apex:pageBlockSection title="Quote Products">
-      <ol>
-        <apex:repeat value="{!quote.QuoteLineItems}" var="qli">
-          <li>{!qli.Id}</li>
-        </apex:repeat>
-      </ol>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Id</th>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <apex:variable var="idx" value="1" />
+          <apex:repeat value="{!quote.QuoteLineItems}" var="qli">
+            <tr>
+              <td>{!idx}</td>
+              <td>{!qli.Id}</td>
+              <td>{!qli.Product2Id}</td>
+              <td>{!qli.Product2.Name}</td>
+              <td>{!qli.Quantity}</td>
+              <td>{!qli.UnitPrice}</td>
+            </tr>
+            <apex:variable var="idx" value="{!VALUE(idx)+1}" />
+          </apex:repeat>
+        </tbody>
+      </table>
     </apex:pageBlockSection> 
   </apex:pageBlock>
 </apex:page>
