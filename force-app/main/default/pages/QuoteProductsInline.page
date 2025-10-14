@@ -1,13 +1,5 @@
 <apex:page title="Quote Products" standardController="Quote">
-  <style>
-    .myTable, .myTable th, .myTable td {
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
-    .myTable th, .myTable td {
-      margin: 5px;
-    }
-  </style>
+  <apex:stylesheet value="{!$Resource.QuoteProductsInlineCSS}" />
 
   <apex:pageBlock title="Page block">
     <apex:pageBlockSection title="User info">
