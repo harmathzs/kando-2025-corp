@@ -13,6 +13,18 @@
         .last-page {
           page-break-after: avoid;
         }
+
+        @page {
+          size: A4;
+          margin: 35mm 1cm 20mm;
+
+          @bottom-right { content: "Page # " counter(page); }
+        }
+        @page:first {
+          @top-center { content: "First page header" }
+        }
+
+
       </style>
     </head>
     <body>
