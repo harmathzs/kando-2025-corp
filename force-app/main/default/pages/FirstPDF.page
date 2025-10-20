@@ -1,0 +1,119 @@
+<apex:page renderAs="pdf"
+  showHeader="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false"
+>
+  <html>
+    <head>
+      <style>
+        body {
+          font-family: "Arial Unicode MS";
+        }
+
+        .unicode {
+          font-family: "Arial Unicode MS";
+        }
+        .formatted-text {
+          font-family: SansSerif;
+        }
+        .serif {
+          font-family: Times-Roman;
+        }
+        .monospace {
+          font-family: Courier;
+        }
+
+        p {
+          text-align: justify;
+          text-indent: 18pt;
+        }
+
+        .page-break-after {
+          page-break-after: always;
+        }
+        .last-page {
+          page-break-after: avoid;
+        }
+
+        @page {
+          size: A4;
+          margin: 35mm 1cm 20mm;
+
+          @bottom-right { content: "Page # " counter(page); }
+        }
+        @page:first {
+          @top-center { content: "First page header" }
+        }
+
+        .watermark {
+          position: fixed;
+          top: 35%;
+          left: 10%;
+          font-size: 72pt;
+          color: #666;
+          opacity: 0.15;
+          white-space: nowrap;
+          z-index: -1;
+          pointer-events: none;
+          user-select: none;
+        }
+
+        div.header {
+          position: running(header);
+        }
+      </style>
+    </head>
+    <body>
+      <div class="watermark" style="{!IF(FALSE, '', 'display:none')}">WATERMARK</div>
+
+      <div class="header">
+        header <br /> content
+      </div>
+
+      <div class="page-break-after">
+        <p>Árvíztűrő tükörfúrógép</p>
+<p class="serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies convallis velit, ut egestas augue fringilla eget. Donec malesuada in eros quis pretium. Pellentesque nec aliquet augue. Sed in consequat orci. Nulla nunc nisi, finibus et quam non, maximus vestibulum velit. Curabitur elementum nunc sapien, ac molestie dolor viverra ut. Proin urna enim, commodo nec lectus sit amet, lacinia dictum nisl. Vestibulum eleifend fringilla urna sit amet lobortis. Duis nulla neque, fermentum sit amet neque id, dictum euismod enim. Proin fringilla libero id euismod cursus. Duis semper, risus at aliquet vulputate, enim orci feugiat odio, eget malesuada lacus ligula vitae justo. Etiam rutrum ipsum ut tortor iaculis, sed condimentum nunc scelerisque. Aenean vel risus quis felis bibendum mollis. Curabitur vel nisl a lectus dapibus interdum. Aenean posuere sollicitudin orci, vel semper mauris pretium vitae.</p>
+
+<p>Donec luctus urna quam, sed pretium ipsum interdum ac. Duis eget molestie arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed laoreet neque in ligula dapibus mollis. Pellentesque ullamcorper auctor posuere. Cras ipsum mi, sollicitudin eleifend justo et, consectetur faucibus magna. Curabitur ut dapibus mauris. Etiam nec ipsum metus. Nunc ac ligula elit. Vivamus sollicitudin sem nec rutrum porta. Aliquam dignissim molestie risus quis varius. Duis varius arcu in neque faucibus eleifend.</p>
+
+<p>Nam laoreet lacus non est mollis, et eleifend metus posuere. Aenean tempor diam non erat tincidunt, vehicula laoreet sem maximus. Suspendisse justo augue, rutrum id tempus id, porta quis nunc. Aenean at fringilla risus, gravida placerat quam. Pellentesque in mi ullamcorper, posuere risus vitae, semper felis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris vitae arcu efficitur, rutrum sem nec, tincidunt tellus. Suspendisse convallis sed lorem a finibus. Vestibulum id sapien eu odio ullamcorper fermentum quis nec nisl. Nulla ex dolor, eleifend ac elementum quis, dictum elementum ante. Donec blandit tortor et nibh fringilla, ac fringilla magna commodo.</p>
+
+<p>Praesent tellus turpis, pellentesque vitae sapien sed, ornare consequat odio. Sed tortor nibh, feugiat ac ligula vel, egestas condimentum dui. Suspendisse posuere mi vitae felis bibendum, ut ornare lorem dapibus. Vestibulum non magna leo. In hac habitasse platea dictumst. Aliquam elementum erat quis orci iaculis feugiat. Integer varius tempus orci sed convallis. Fusce ac aliquam lectus.</p>
+
+<p>Aenean ullamcorper nibh odio, eget sollicitudin tellus eleifend vitae. Donec volutpat metus sed vestibulum iaculis. Ut tempor quam sed mauris sodales ultricies. Ut vehicula nibh nec odio facilisis fringilla. Nunc arcu lacus, faucibus quis ex eget, eleifend vestibulum quam. Suspendisse non molestie velit. Phasellus et nunc vel augue dapibus placerat id in lectus. Fusce sit amet tellus mattis, egestas neque in, sagittis purus. Quisque volutpat, nunc quis finibus scelerisque, mi orci porta nulla, sed lacinia nulla sem a tellus. In laoreet ligula mi.</p>
+
+<p>Nam molestie justo non vehicula ultricies. Nunc vitae mollis massa, sit amet convallis felis. Maecenas at pretium libero. Nunc rhoncus blandit tortor, vel cursus ex fermentum a. Duis sed libero sed sapien tincidunt tempor. Fusce eget pulvinar massa. Morbi vitae metus at magna condimentum blandit pharetra quis mi. Mauris placerat laoreet odio at venenatis. Nunc convallis accumsan est ut vehicula. Vestibulum fermentum arcu et lacus pharetra dignissim at eget eros. Cras tristique dignissim quam, in luctus elit malesuada nec. Pellentesque et tincidunt orci. Quisque quis erat luctus, finibus velit a, lobortis nulla.</p>
+
+<p>Etiam egestas metus nec aliquam accumsan. Aliquam ornare tortor nec diam cursus ullamcorper. Proin interdum volutpat ipsum, vitae volutpat nisl fringilla et. Duis enim nulla, tincidunt a dolor in, ultricies egestas orci. Cras quis sem purus. Nam dapibus dolor vel orci viverra, eleifend commodo est elementum. Mauris ante leo, semper eu lobortis sit amet, ultrices sagittis purus.</p>
+
+<p>Aenean varius pulvinar sem. Cras lobortis orci eu libero ullamcorper venenatis. In diam massa, viverra sit amet malesuada in, venenatis at eros. Etiam nec euismod lacus. Sed blandit ex ipsum, nec hendrerit odio suscipit sed. Morbi euismod, erat a tincidunt laoreet, felis sapien condimentum turpis, quis suscipit elit urna ac dui. Mauris congue, lacus non commodo porttitor, magna massa consectetur mauris, non molestie leo nisl vel quam. Quisque aliquam velit justo, nec porttitor odio dignissim in. Etiam at metus maximus, sodales tortor ut, rhoncus orci. Pellentesque iaculis odio non sem dictum condimentum. Duis id nisi enim.</p>
+
+<p>Ut vehicula pulvinar libero at pharetra. Sed commodo congue mauris, sed consectetur mauris consectetur at. Curabitur sed lorem vel neque gravida laoreet sed vitae justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur nisi libero, venenatis vestibulum euismod non, commodo eu elit. Morbi erat leo, blandit a tempus commodo, dignissim a tellus. Nam tempus consequat scelerisque. Phasellus tincidunt facilisis augue, id tincidunt leo luctus non. Maecenas vel tortor eleifend, ullamcorper nisi quis, vulputate metus. Nulla facilisis, elit id tincidunt luctus, libero quam sagittis risus, eget elementum ante mauris nec orci. Cras scelerisque libero nibh, in tincidunt lectus fermentum sit amet.</p>
+
+<p>Donec tristique nulla id nisl vulputate, nec molestie mi imperdiet. Ut vitae ante pulvinar, malesuada tortor sit amet, convallis turpis. Pellentesque suscipit convallis lorem, ut hendrerit mi facilisis quis. Cras tincidunt, sapien id mattis pellentesque, tortor urna consequat arcu, eu varius diam neque ut est. Etiam vitae tellus convallis, eleifend orci eget, consequat eros. Etiam eget ligula ut nulla finibus vestibulum. Morbi rutrum risus ut molestie scelerisque. Praesent lectus tellus, laoreet in posuere et, luctus ut ex.</p>
+      
+    <apex:include pageName="Signature" />
+  </div>
+      
+      <div class="last-page">
+        <h2>Data table</h2>
+        <table border="1" cellspacing="0" cellpadding="4">
+          <thead>
+            <tr>
+              <th width="3cm" class="formatted-text">Unicode</th>
+              <th width="4cm" class="formatted-text">Formatted</th>
+              <th width="5cm" class="formatted-text">Monospace</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="unicode">Teniszütő</td>
+              <td class="formatted-text">a<sup>2</sup><i>+</i>b<sup>2</sup>=<u><b>c<sup>2</sup></b></u></td>
+              <td class="monospace">print ubul;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <apex:include pageName="Signature" />
+      </div>
+    </body>
+  </html>
+</apex:page>
