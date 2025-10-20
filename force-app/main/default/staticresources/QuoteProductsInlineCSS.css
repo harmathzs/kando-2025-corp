@@ -1,0 +1,7 @@
+.myTable, .myTable th, .myTable td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.myTable th, .myTable td {
+  margin: 5px;
+}
