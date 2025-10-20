@@ -17,7 +17,7 @@
         .serif {
           font-family: Times-Roman;
         }
-        .monospaced {
+        .monospace {
           font-family: Courier;
         }
 
@@ -71,7 +71,23 @@
       </div>
       
       <div class="last-page">
-        Teniszütő
+        <h2>Data table</h2>
+        <table border="1" cellspacing="0" cellpadding="4">
+          <thead>
+            <tr>
+              <th class="formatted-text">Unicode</th>
+              <th class="formatted-text">Formatted</th>
+              <th class="formatted-text">Monospace</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="unicode">Teniszütő</td>
+              <td class="formatted-text">a<sup>2</sup><i>+</i>b<sup>2</sup>=<u><b>c<sup>2</sup></b></u></td>
+              <td class="monospace">print ubul;</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </body>
   </html>
