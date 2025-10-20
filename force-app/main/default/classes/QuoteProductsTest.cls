@@ -5,6 +5,17 @@
 @IsTest
 private class QuoteProductsTest {
     @TestSetup static void testFactory() {
+        Product2 prod = new Product2(Name='Test Product');
+        insert prod;
+
+        PricebookEntry pbe = new PricebookEntry(
+            Pricebook2Id = Test.getStandardPricebookId(),
+            Product2Id = prod.Id,
+            UnitPrice = 100,
+            IsActive = true
+        );
+        insert pbe;
+
         Opportunity oppy = new Opportunity(
             Name = 'Test Opportunity',
             StageName = 'Closed Won',
@@ -14,9 +25,19 @@ private class QuoteProductsTest {
 
         Quote quote = new Quote(
             Name = 'Test Quote',
-            OpportunityId = oppy.Id
+            OpportunityId = oppy.Id,
+            Pricebook2Id = Test.getStandardPricebookId()
         );
         insert quote;
+
+        QuoteLineItem qli = new QuoteLineItem(
+            QuoteId = quote.Id,
+            Product2Id = prod.Id,
+            PricebookEntryId = pbe.Id,
+            Quantity = 2,
+            UnitPrice = 100
+        );
+        insert qli;
     }
 
     @IsTest
