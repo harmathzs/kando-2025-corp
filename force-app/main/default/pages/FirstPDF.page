@@ -7,10 +7,22 @@
         body {
           font-family: "Arial Unicode MS";
         }
+        .page-break-after {
+          page-break-after: always;
+        }
+        .last-page {
+          page-break-after: avoid;
+        }
       </style>
     </head>
     <body>
-      Árvíztűrő tükörfúrógép
+      <div class="page-break-after">
+        Árvíztűrő tükörfúrógép
+      </div>
+      
+      <div class="last-page">
+        Teniszütő
+      </div>
     </body>
   </html>
 </apex:page>
