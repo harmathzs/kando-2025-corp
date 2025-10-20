@@ -75,9 +75,9 @@
         <table border="1" cellspacing="0" cellpadding="4">
           <thead>
             <tr>
-              <th class="formatted-text">Unicode</th>
-              <th class="formatted-text">Formatted</th>
-              <th class="formatted-text">Monospace</th>
+              <th width="3cm" class="formatted-text">Unicode</th>
+              <th width="4cm" class="formatted-text">Formatted</th>
+              <th width="5cm" class="formatted-text">Monospace</th>
             </tr>
           </thead>
           <tbody>
