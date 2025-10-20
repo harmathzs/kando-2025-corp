@@ -48,5 +48,12 @@ private class QuoteProductsTest {
     }
     @IsTest
     static void testQliInput() {
+        Quote quote = [SELECT Id FROM Quote LIMIT 1];
+        QuoteLineItem qli = [SELECT Id, QuoteId FROM QuoteLineItem WHERE QuoteId = :quote.Id LIMIT 1];
+        
+        ApexPages.currentPage().getParameters().put('qliid', qli.Id);
+        ApexPages.StandardController stdController = new ApexPages.StandardController(quote);
+        
+        QuoteProductsController controller = new QuoteProductsController(stdController);
     }
 }
