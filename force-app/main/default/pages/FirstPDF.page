@@ -1,6 +1,16 @@
-<apex:page >
-  <!-- Begin Default Content REMOVE THIS -->
-  <h1>Congratulations</h1>
-  This is your new Page
-  <!-- End Default Content REMOVE THIS -->
+<apex:page renderAs="pdf"
+  showHeader="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false"
+>
+  <html>
+    <head>
+      <style>
+        body {
+          font-family: "Arial Unicode MS";
+        }
+      </style>
+    </head>
+    <body>
+      Árvíztűrő tükörfúrógép
+    </body>
+  </html>
 </apex:page>
