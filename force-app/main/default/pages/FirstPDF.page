@@ -89,7 +89,9 @@
 <p>Ut vehicula pulvinar libero at pharetra. Sed commodo congue mauris, sed consectetur mauris consectetur at. Curabitur sed lorem vel neque gravida laoreet sed vitae justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur nisi libero, venenatis vestibulum euismod non, commodo eu elit. Morbi erat leo, blandit a tempus commodo, dignissim a tellus. Nam tempus consequat scelerisque. Phasellus tincidunt facilisis augue, id tincidunt leo luctus non. Maecenas vel tortor eleifend, ullamcorper nisi quis, vulputate metus. Nulla facilisis, elit id tincidunt luctus, libero quam sagittis risus, eget elementum ante mauris nec orci. Cras scelerisque libero nibh, in tincidunt lectus fermentum sit amet.</p>
 
 <p>Donec tristique nulla id nisl vulputate, nec molestie mi imperdiet. Ut vitae ante pulvinar, malesuada tortor sit amet, convallis turpis. Pellentesque suscipit convallis lorem, ut hendrerit mi facilisis quis. Cras tincidunt, sapien id mattis pellentesque, tortor urna consequat arcu, eu varius diam neque ut est. Etiam vitae tellus convallis, eleifend orci eget, consequat eros. Etiam eget ligula ut nulla finibus vestibulum. Morbi rutrum risus ut molestie scelerisque. Praesent lectus tellus, laoreet in posuere et, luctus ut ex.</p>
-      </div>
+      
+    <apex:include pageName="Signature" />
+  </div>
       
       <div class="last-page">
         <h2>Data table</h2>
@@ -109,6 +111,8 @@
             </tr>
           </tbody>
         </table>
+
+        <apex:include pageName="Signature" />
       </div>
     </body>
   </html>
