@@ -2,14 +2,16 @@
 <apex:page id="OrderExcelReport" contentType="application/vnd.ms-excel"
   standardController="Order" extensions="OrderExcelController"
 >
-  <table>
+  <table border="1" style="border-collapse: collapse;">
     <tr>
       <th>Order Id</th>
       <th>Order Status</th>
+      <th>Order Number</th>
     </tr>
     <tr>
-      <td>111XXX</td>
-      <td>Draft</td>
+      <td><apex:outputField value="{!order.Id}" /></td>
+      <td><apex:outputField value="{!order.Status}" /></td>
+      <td><apex:outputField value="{!order.OrderNumber}" /></td>
     </tr>
   </table>
 </apex:page>
