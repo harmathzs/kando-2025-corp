@@ -1,4 +1,7 @@
-<apex:page id="OrderExcelReport" contentType="application/vnd.ms-excel">
+<!-- https://orgfarm-65ae854cf2-dev-ed--c.develop.vf.force.com/apex/OrderExcelReport?id=801gL00000SPZqWQAX -->
+<apex:page id="OrderExcelReport" contentType="application/vnd.ms-excel"
+  standardController="Order" extensions="OrderExcelController"
+>
   <table>
     <tr>
       <th>Order Id</th>
