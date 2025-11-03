@@ -1,7 +1,15 @@
 import { LightningElement, api } from 'lwc';
 
 export default class MyFirstLightningCard extends LightningElement {
-    @api recordId;
+    _recordId;
+    @api get recordId() {
+        console.log('get recordId', this._recordId)
+        return this._recordId
+    }
+    set recordId(value) {
+        console.log('set recordId', this._recordId)
+        this._recordId = value
+    }
 
     connectedCallback() {
         console.log('connectedCallback recordId', this.recordId)
