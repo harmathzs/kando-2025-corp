@@ -1,0 +1,6 @@
+<apex:page standardController="Product2">
+    <!--
+    <apex:image url="{!$Resource.BugocsigaImg}"></apex:image>
+    -->
+    <apex:outputText value="{!product2.Rich_Image__c}" escape="false" />
+</apex:page>
