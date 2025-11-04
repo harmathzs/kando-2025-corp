@@ -31,8 +31,24 @@ public with sharing class EmailToLeadHandler implements Messaging.InboundEmailHa
                     System.debug('Insert Lead failed: ' + sr.getErrors());
                     result.success = false;
                 }
+
+                // handle attachments:
+                Attachment[] attachments = new List<Attachment>();
+                if (email.binaryAttachments != null && !email.binaryAttachments.isEmpty()) {
+                    for (Messaging.InboundEmail.BinaryAttachment binaryAttachment: email.binaryAttachments) {
+                        Attachment attachment = new Attachment();
+                        attachment.ParentId = lead.Id;
+                        attachment.Name = binaryAttachment.fileName;
+                        attachment.Body = binaryAttachment.body;
+                        attachments.add(attachment);
+                    }
+                }
+                if (!attachments.isEmpty()) {
+                    insert attachments;
+                }
+
             } catch (Exception e) {
-                System.debug('Insert Lead failed: ' + sr.getErrors());
+                System.debug('Insert failed: ' + e.getMessage());
                 result.success = false;
             }
         }
