@@ -3,30 +3,40 @@ public with sharing class EmailToLeadHandler implements Messaging.InboundEmailHa
         Messaging.InboundEmailResult result = new Messaging.InboundEmailResult();
         // process email
         String fromAddress = email.fromAddress;
-        String subject = email.subject;
-        String body = email.plainTextBody; // TODO - HTML body?
+        Lead[] existingLeads = [SELECT Id, Email FROM Lead WHERE Email = :fromAddress];
+        if (existingLeads.isEmpty()) {
 
-        System.debug('fromAddress: '+fromAddress);
-        System.debug('subject: '+subject);
-        System.debug('body: '+body);
+            String subject = email.subject;
+            String body = email.plainTextBody; // TODO - HTML body?
 
-        Lead lead = new Lead();
-        lead.Email = fromAddress;
-        lead.LastName = email.fromName;
-        lead.Company = 'Todo Company'; // TODO - callout to AI ! :)
+            System.debug('fromAddress: ' + fromAddress);
+            System.debug('subject: ' + subject);
+            System.debug('body: ' + body);
 
-        lead.Title = subject;
-        lead.Description = body;
+            Lead lead = new Lead();
+            lead.Email = fromAddress;
+            lead.LastName = email.fromName;
+            lead.Company = 'Todo Company'; // TODO - callout to AI ! :)
 
-        // insert lead;
-        Database.SaveResult sr = Database.insert(lead);
-        if (sr.isSuccess()) {
-            System.debug('New Lead Id: '+lead.Id);
-        } else {
-            System.debug('Insert Lead failed: '+sr.getErrors());
+            lead.Title = subject;
+            lead.Description = body;
+
+            Database.SaveResult sr = null;
+            try {
+                sr = Database.insert(lead);
+                if (sr.isSuccess()) {
+                    System.debug('New Lead Id: ' + lead.Id);
+                    result.success = true;
+                } else {
+                    System.debug('Insert Lead failed: ' + sr.getErrors());
+                    result.success = false;
+                }
+            } catch (Exception e) {
+                System.debug('Insert Lead failed: ' + sr.getErrors());
+                result.success = false;
+            }
         }
 
-        result.success = true;
         return result;
     }
 }
