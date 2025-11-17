@@ -7,9 +7,14 @@ private class EmailToLeadTest {
         email.fromAddress = 'test@kkando.hu';
         email.fromName = 'Test Özséb';
         email.subject = 'Test subject';
-        email.plainTextBody = 'Test body';
+        email.plainTextBody = 'Test body'; 
 
-        // TODO - attachment
+        // attachment
+        Messaging.InboundEmail.BinaryAttachment attachment = new Messaging.InboundEmail.BinaryAttachment();
+        attachment.fileName = 'test.txt';
+        attachment.body = Blob.valueOf('test');
+
+        email.binaryAttachments = new Messaging.InboundEmail.BinaryAttachment[] { attachment };
 
         Messaging.InboundEnvelope envelope = new Messaging.InboundEnvelope();
 
