@@ -8,10 +8,15 @@ public with sharing class HttpCalloutService {
         HttpRequest req = new HttpRequest();
         req.setMethod(method);
         req.setEndpoint(endpoint);
-        for (String headerKey: headers.keySet()) {
-            req.setHeader(headerKey, headers.get(headerKey));
+
+        if (headers != null && !headers.isEmpty()) {
+            for (String headerKey : headers.keySet()) {
+                req.setHeader(headerKey, headers.get(headerKey));
+            }
         }
-        req.setBody(reqBody);
+        if (String.isNotBlank(reqBody)) {
+            req.setBody(reqBody);
+        }
 
         Http http = new Http();
 
