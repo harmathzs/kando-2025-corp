@@ -27,6 +27,7 @@ public with sharing class HttpCalloutService {
 
         HttpResponse res;
         try {
+            // TODO - mock test callout
             res = http.send(req);
             statusCode = res.getStatusCode();
             statusMessage = res.getStatus();
