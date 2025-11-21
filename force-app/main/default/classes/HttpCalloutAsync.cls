@@ -1,4 +1,4 @@
-public with sharing class HttpCalloutAsync implements Queueable, Database.AllowsCallouts, Schedulable {
+public with sharing class HttpCalloutAsync implements Queueable, Database.AllowsCallouts {
     public String method;
     public String endpoint;
     public Map<String, String> headers;
@@ -22,10 +22,5 @@ public with sharing class HttpCalloutAsync implements Queueable, Database.Allows
     public void execute(QueueableContext context) {
         results = HttpCalloutService.callout(method, endpoint, headers, reqBody);
         System.debug('HttpCalloutAsync results: '+results);
-    }
-
-    public void execute(SchedulableContext context) {
-        jobId = System.enqueueJob(this);
-        System.debug('HttpCalloutAsync jobId: '+jobId);
     }
 }
