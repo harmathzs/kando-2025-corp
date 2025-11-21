@@ -33,5 +33,7 @@ trigger OrderTrigger on Order (before insert, before update, before delete, afte
         String ordersJson = JSON.serializePretty(sendOrders);
         System.debug('ordersJson: '+ordersJson);
 
+        Map<String, Object> result = HttpCalloutService.callout('POST', 'https://kando-2025-external-harmathzs.netlify.app/.netlify/functions/order', null, ordersJson);
+        System.debug('result: '+result);
     }
 }
