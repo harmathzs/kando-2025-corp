@@ -30,6 +30,11 @@ public with sharing class OrderTriggerHandler {
 
             String ordersJson = JSON.serializePretty(orders);
             System.debug('ordersJson: '+ordersJson);
+
+            Map<String, String> headers = new Map<String,String>();
+            headers.put('Content-Type', 'application/json');
+
+            
         }
     }
 }
