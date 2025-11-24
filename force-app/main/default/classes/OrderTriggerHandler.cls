@@ -34,7 +34,13 @@ public with sharing class OrderTriggerHandler {
             Map<String, String> headers = new Map<String,String>();
             headers.put('Content-Type', 'application/json');
 
-            
+            Map<String, Object> results = HttpCalloutService.callout(
+                'POST', 
+                'https://kando-2025-external-harmathzs.netlify.app/.netlify/functions/order',
+                headers, 
+                ordersJson
+            );
+            System.debug('results: '+results);
         }
     }
 }
