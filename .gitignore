@@ -56,3 +56,8 @@ target/
 **/*.tsbuildinfo
 
 **/graphql.config.yml
+
+
+
+python
+*.py
