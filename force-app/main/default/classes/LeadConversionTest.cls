@@ -27,4 +27,18 @@ private class LeadConversionTest {
         System.assertNotEquals(null, obj.get('contactId'));
         System.assertNotEquals(null, obj.get('opportunityId'));
     }
+/*
+    @IsTest static void testError() {
+        Lead lead = [SELECT Id, Email FROM Lead
+        WHERE Email = 'test@test.com' LIMIT 1
+        ];
+        LeadConversionService.customConvertLead(lead.Id);
+
+        lead = [SELECT Id, Email FROM Lead
+        WHERE Email = 'test@test.com' LIMIT 1
+        ];
+        LeadConversionService.customConvertLead(lead.Id);
+    }
+
+ */
 }
