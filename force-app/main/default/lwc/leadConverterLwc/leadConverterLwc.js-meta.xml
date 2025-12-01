@@ -11,4 +11,9 @@
         <target>lightning__FlowScreen</target>
         <target>lightning__Tab</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage,lightning__RecordPage,lightning__FlowScreen">
+            <property name="recordId" type="String" />
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>
