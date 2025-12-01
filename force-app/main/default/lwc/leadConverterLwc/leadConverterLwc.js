@@ -40,9 +40,16 @@ export default class LeadConverterLwc extends LightningElement {
     if (this.isRecordIdSet()) {
       const leadId = this.recordId
       this.isLoading = true
-      const resultJson = await customConvertLead({leadId})
-      this.isLoading = false
-      console.log('resultJson', resultJson)
+
+      customConvertLead({leadId})
+      .then(resultJson=>{
+        console.log('resultJson', resultJson)
+        const result = JSON.parse(resultJson)
+        console.log('result', result)
+        // TODO - redirect to contact (record) page
+      })
+      .catch(console.warn)
+      .finally(()=>this.isLoading=false)
     }
   }
 
