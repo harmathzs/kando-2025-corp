@@ -28,6 +28,10 @@ export default class LeadConverterLwc extends LightningElement {
     console.log('renderedCallback recordId', this.recordId)
   }
 
+  handleButtonClick() {
+    console.log('handleButtonClick start')
+  }
+
   disconnectedCallback() {
     console.log('LeadConverterLwc disconnectedCallback')
   }
