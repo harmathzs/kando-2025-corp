@@ -2,7 +2,12 @@
 <template>
     <lightning-card>
         <div class="slds-p-left_small">
-            <p>Hello Lwc!</p>
+            <lightning-record-picker
+                label="Lead to convert: "
+                value={recordId}
+                object-api-name="Lead"
+                placeholder="Pick a lead ... "
+            ></lightning-record-picker>
         </div>
     </lightning-card>
 </template>
