@@ -11,8 +11,13 @@ export default class LeadConverterLwc extends LightningElement {
   }
   set recordId(value) {
     this._recordId = value
-    this.handleRecordIdSet(value)
+    this.handleRecordIdSet(value).catch(console.warn)
   }
+
+  displayInfo = {
+    primaryField: "Name",
+    additionalFields: ["Company"],
+  };
 
   connectedCallback() {
     console.log('LeadConverterLwc connectedCallback')
