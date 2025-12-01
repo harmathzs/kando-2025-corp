@@ -1,10 +1,15 @@
 /** leadConverterLwc */
 import { LightningElement, api } from "lwc";
 
+import customConvertLead from '@salesforce/apex/LeadConversionService.customConvertLead'
+
 export default class LeadConverterLwc extends LightningElement {
   _recordId;
   @api get recordId() {
     return this._recordId
+  }
+  isRecordIdSet() {
+    return this.recordId != null
   }
   async handleRecordIdSet(value) {
     console.log('handleRecordIdSet value', value)
@@ -28,8 +33,13 @@ export default class LeadConverterLwc extends LightningElement {
     console.log('renderedCallback recordId', this.recordId)
   }
 
-  handleButtonClick() {
+  async handleButtonClick() {
     console.log('handleButtonClick start')
+    if (this.isRecordIdSet()) {
+      const leadId = this.recordId
+      const resultJson = await customConvertLead({leadId})
+      console.log('resultJson', resultJson)
+    }
   }
 
   disconnectedCallback() {

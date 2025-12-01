@@ -10,7 +10,7 @@
                 display-info={displayInfo}
             ></lightning-record-picker>
         </div>
-        <div class="slds-p-around_small">
+        <div class="slds-p-around_small" lwc:if={isRecordIdSet}>
             <lightning-button
                 variant="brand"
                 icon-name="action:lead_convert"
