@@ -47,6 +47,7 @@ export default class LeadConverterLwc extends LightningElement {
         const result = JSON.parse(resultJson)
         console.log('result', result)
         // TODO - redirect to contact (record) page
+        window.location.href("/" + result?.contactId)
       })
       .catch(console.warn)
       .finally(()=>this.isLoading=false)
