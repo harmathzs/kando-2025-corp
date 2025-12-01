@@ -24,6 +24,8 @@ export default class LeadConverterLwc extends LightningElement {
     additionalFields: ["Company"],
   };
 
+  isLoading = false;
+
   connectedCallback() {
     console.log('LeadConverterLwc connectedCallback')
   }
@@ -37,7 +39,9 @@ export default class LeadConverterLwc extends LightningElement {
     console.log('handleButtonClick start')
     if (this.isRecordIdSet()) {
       const leadId = this.recordId
+      this.isLoading = true
       const resultJson = await customConvertLead({leadId})
+      this.isLoading = false
       console.log('resultJson', resultJson)
     }
   }

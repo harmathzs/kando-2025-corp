@@ -1,6 +1,7 @@
 <!-- Lead Converter LWC -->
 <template>
     <lightning-card>
+        <lightning-spinner lwc:if={isLoading}></lightning-spinner>
         <div class="slds-p-left_small">
             <lightning-record-picker
                 label="Lead to convert: "
