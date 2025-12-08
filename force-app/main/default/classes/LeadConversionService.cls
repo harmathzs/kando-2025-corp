@@ -27,4 +27,39 @@ public with sharing class LeadConversionService {
 
         return JSON.serializePretty(results);
     }
+
+    @AuraEnabled
+    public static String customConvertLeads(String[] leadIds) {
+        LeadStatus convertStatus = [SELECT Id, ApiName FROM LeadStatus WHERE IsConverted=TRUE LIMIT 1];
+
+        Map<Id, Map<String,Object>> results = new Map<Id, Map<String,Object>>();
+
+        for (String leadId: leadIds) {
+            Database.LeadConvert lc = new Database.LeadConvert();
+            lc.setConvertedStatus(convertStatus.ApiName);
+            lc.setLeadId(leadId);
+
+            Map<String, Object> result = new Map<String, Object>();
+
+            Database.LeadConvertResult lcr = Database.convertLead(lc);
+            if (lcr.isSuccess()) {
+                Id accountId = lcr.getAccountId();
+                Id contactId = lcr.getContactId();
+                Id opportunityId = lcr.getOpportunityId();
+
+                result.put('accountId', accountId);
+                result.put('contactId', contactId);
+                result.put('opportunityId', opportunityId);
+            } else {
+                Database.Error[] errors = lcr.getErrors();
+
+                result.put('errors', errors);
+            }
+            System.debug('result: '+result); 
+            
+            results.put(leadId, result);
+        }
+
+        return JSON.serializePretty(results);
+    }
 }
