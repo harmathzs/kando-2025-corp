@@ -114,14 +114,13 @@ public with sharing class OrdersReportOnAccountController {
      *
      * @param accountId Account.Id
      */
-    public static void getTableData(String accountId) {
+    @AuraEnabled
+    public static List<List<String>> getTableData(String accountId) {
         queryAccount(accountId);
 
         OrdersReportOnAccountController instance = new OrdersReportOnAccountController();
         instance.accountId = accountId;
-        instance.populateExcelData(accountId);
-
-
+        return instance.populateExcelData(accountId);
     }
 
     /**

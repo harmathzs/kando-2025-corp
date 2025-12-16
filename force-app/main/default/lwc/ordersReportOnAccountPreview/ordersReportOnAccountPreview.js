@@ -2,16 +2,31 @@ import {LightningElement, api} from 'lwc';
 import {ShowToastEvent} from "lightning/platformShowToastEvent";
 import {CloseActionScreenEvent} from "lightning/actions";
 
+import getTableData from '@salesforce/apex/OrdersReportOnAccountController.getTableData'
+
 export default class OrdersReportOnAccountPreview extends LightningElement {
-  @api recordId;
+  _recordId;
+  @api get recordId() {
+    return this._recordId
+  }
+  set recordId(value) {
+    this._recordId = value
+    console.log('set recordId', this.recordId)
+    if (this.recordId) {
+      this.fillPreviewTableData()
+        .then()
+        .catch(console.warn)
+    }
+  }
 
   showSpinner = false;
 
   cdlId;
   urlToCD;
 
-  fillPreviewTableData() {
-
+  async fillPreviewTableData() {
+    const excelData = await getTableData({accountId: this.recordId})
+    console.log('excelData', excelData)
   }
 
   handleCreateFile() {
