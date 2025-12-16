@@ -13,10 +13,12 @@ public with sharing class OrdersReportOnAccountController {
      * Constructor populates accountId, acc, excelData by page's "id"=Account.Id URL query search parameter
      */
     public OrdersReportOnAccountController() {
-
-        OrdersReportOnAccountController.queryAccount(accountId);
-
-        populateExcelData(accountId);
+        if (ApexPages.currentPage()!=null && ApexPages.currentPage().getParameters().containsKey('id'))
+            accountId = ApexPages.currentPage().getParameters().get('id');
+        if (String.isNotBlank(accountId))
+            acc = OrdersReportOnAccountController.queryAccount(accountId);
+        if (acc!=null)
+            populateExcelData(accountId);
 
     }
 
@@ -35,20 +37,73 @@ public with sharing class OrdersReportOnAccountController {
      * Get orders and order items of account
      *
      * @param accountId Account.Id
+     * @return queried account
      */
-    public static void queryAccount(String accountId) {
+    public static Account queryAccount(String accountId) {
         Account acc;
+        if (String.isNotBlank(accountId)) {
+            acc = [
+                SELECT Id
+                    ,Name
+                    ,(SELECT Id
+                        ,OrderNumber
+                        ,Status
+                        ,TotalAmount
+                        ,ActivatedDate
+                        ,EffectiveDate
+                        ,(SELECT Id
+                            ,Product2Id
+                            ,Product2.Name
+                            ,Product2.Description
+                            ,Quantity
+                            ,UnitPrice
+                            ,ListPrice
+                            ,TotalPrice
+                        FROM OrderItems)
+                    FROM Orders
+                    WHERE ActivatedDate >= LAST_WEEK
+                    )
+                FROM Account
+                WHERE Id = :accountId
+                LIMIT 1
+            ];
+        }
 
+        return acc;
     }
 
     /**
      * Fill excelData
+     * @test with https://orgfarm-65ae854cf2-dev-ed--c.develop.vf.force.com/apex/OrdersReportOnAccount?id=001gL00000Qnl7JQAR
      *
      * @param accountId Account.Id
+     * @return excelData
      */
-    public void populateExcelData(String accountId) {
-        OrdersReportOnAccountController.queryAccount(accountId);
-
+    public List<List<String>> populateExcelData(String accountId) {
+        Account acc = OrdersReportOnAccountController.queryAccount(accountId);
+        excelData = new List<List<String>>();
+        if (acc!=null && acc.Orders!=null && !acc.Orders.isEmpty()) {
+            for (Order order: acc.Orders) {
+                if (order.OrderItems!=null && !order.OrderItems.isEmpty()) {
+                    for (OrderItem oi: order.OrderItems) {
+                        if (oi.Quantity > 0) {
+                            excelData.add(new List<String>{
+                                order.OrderNumber,
+                                order.Status,
+                                String.valueOf(order.EffectiveDate),
+                                String.valueOf(order.ActivatedDate),
+                                oi.Product2.Name,
+                                oi.Product2.Description,
+                                String.valueOf(oi.Quantity),
+                                String.valueOf(oi.UnitPrice)
+                            });
+                        }
+                    }
+                }
+            }
+        }
+        System.debug('excelData: '+excelData);
+        return excelData;
     }
 
     /**
