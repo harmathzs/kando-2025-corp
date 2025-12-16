@@ -96,7 +96,7 @@ public with sharing class OrdersReportOnAccountController {
                                 String.valueOf(order.EffectiveDate),
                                 String.valueOf(order.ActivatedDate),
                                 oi.Product2.Name,
-                                oi.Product2.Description,
+                                String.isNotBlank(oi.Product2.Description) ? oi.Product2.Description : '',
                                 String.valueOf(oi.Quantity),
                                 String.valueOf(oi.UnitPrice)
                             });
