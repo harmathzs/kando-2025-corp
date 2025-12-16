@@ -9,6 +9,7 @@
           <option value="$PROJECT_DIR$/force-app/main/default/classes/OrdersReportOnAccountTest.cls-meta.xml" />
           <option value="$PROJECT_DIR$/force-app/main/default/classes/QuoteProductsTest.cls-meta.xml" />
           <option value="$PROJECT_DIR$/force-app/main/default/lwc/ordersReportOnAccountPreview/ordersReportOnAccountPreview.js-meta.xml" />
+          <option value="$PROJECT_DIR$/force-app/main/default/pages/OrdersReportOnAccount.page-meta.xml" />
         </list>
       </option>
     </inspection_tool>

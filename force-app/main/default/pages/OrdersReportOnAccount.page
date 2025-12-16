@@ -1,0 +1,10 @@
+<apex:page
+  id="OrdersReportOnAccount"
+  standardController="Account"
+  extensions="OrdersReportOnAccountController"
+  contentType="application/vnd.ms-excel"
+>
+  <table border="1" style="border-collapse: collapse;">
+
+  </table>
+</apex:page>
