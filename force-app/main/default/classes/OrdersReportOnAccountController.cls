@@ -18,7 +18,7 @@ public with sharing class OrdersReportOnAccountController {
         if (String.isNotBlank(accountId))
             acc = OrdersReportOnAccountController.queryAccount(accountId);
         if (acc!=null)
-            populateExcelData(accountId);
+            excelData = populateExcelData(accountId);
 
     }
 
@@ -28,8 +28,11 @@ public with sharing class OrdersReportOnAccountController {
      * @param controller Account controller
      */
     public OrdersReportOnAccountController(ApexPages.StandardController controller) {
-
-        populateExcelData(accountId);
+        accountId = controller.getId();
+        if (String.isNotBlank(accountId))
+            acc = OrdersReportOnAccountController.queryAccount(accountId);
+        if (acc!=null)
+            excelData = populateExcelData(accountId);
 
     }
 
