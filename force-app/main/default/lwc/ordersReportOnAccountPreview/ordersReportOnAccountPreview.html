@@ -18,7 +18,15 @@
         </tr>
         </thead>
         <tbody>
-
+          <template for:each={excelData} for:item="row">
+            <tr key={row}>
+              <template for:each={row} for:item="cell">
+                <td key={cell}>
+                  {cell}
+                </td>
+              </template>
+            </tr>
+          </template>
         </tbody>
       </table>
     </div>

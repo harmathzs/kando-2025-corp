@@ -24,9 +24,10 @@ export default class OrdersReportOnAccountPreview extends LightningElement {
   cdlId;
   urlToCD;
 
+  excelData = [[]]
   async fillPreviewTableData() {
-    const excelData = await getTableData({accountId: this.recordId})
-    console.log('excelData', excelData)
+    this.excelData = await getTableData({accountId: this.recordId})
+    console.log('excelData', this.excelData)
   }
 
   handleCreateFile() {
