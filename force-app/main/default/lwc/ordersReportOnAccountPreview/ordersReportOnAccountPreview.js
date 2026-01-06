@@ -50,7 +50,10 @@ export default class OrdersReportOnAccountPreview extends LightningElement {
   }
 
   handleShowTable() {
-
+    // Create url for xls visualforce
+    console.log('handleShowTable recordId', this.recordId)
+    const vfPageUrl = '/apex/OrdersReportOnAccount?id=' + this.recordId
+    window.open(vfPageUrl, '_blank')
   }
 
   handleCloseWindow() {
