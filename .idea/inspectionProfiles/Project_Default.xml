@@ -5,7 +5,11 @@
     <inspection_tool class="InconsistentSalesforceApiVersion" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredFilePaths">
         <list>
+          <option value="$PROJECT_DIR$/force-app/main/default/classes/OrdersReportOnAccountController.cls-meta.xml" />
+          <option value="$PROJECT_DIR$/force-app/main/default/classes/OrdersReportOnAccountTest.cls-meta.xml" />
           <option value="$PROJECT_DIR$/force-app/main/default/classes/QuoteProductsTest.cls-meta.xml" />
+          <option value="$PROJECT_DIR$/force-app/main/default/lwc/ordersReportOnAccountPreview/ordersReportOnAccountPreview.js-meta.xml" />
+          <option value="$PROJECT_DIR$/force-app/main/default/pages/OrdersReportOnAccount.page-meta.xml" />
         </list>
       </option>
     </inspection_tool>
