@@ -1,6 +1,9 @@
-public without sharing class LeadScoreScheduler implements Database.Batchable<SObject>, Schedulable {
+public without sharing class LeadScoreScheduler implements Database.Batchable<SObject>, Schedulable, Database.Stateful {
+    public Integer counter;
+
     public Database.QueryLocator start(Database.BatchableContext context) {
-        return Database.getQueryLocator([SELECT Id FROM Lead]);
+        counter = 0;
+        return Database.getQueryLocator([SELECT Id, Company, Funny_Score__c FROM Lead WHERE Company != NULL]);
     }
 
     public void execute(Database.BatchableContext context, List<Lead> leads) {
@@ -16,6 +19,7 @@ public without sharing class LeadScoreScheduler implements Database.Batchable<SO
                 updatableLead.Funny_Score__c = score;
                 // update updatableLead;
                 updatableLeads.add(updatableLead);
+                counter++;
             }
 
         }
@@ -23,7 +27,7 @@ public without sharing class LeadScoreScheduler implements Database.Batchable<SO
     }
 
     public void finish(Database.BatchableContext context) {
-
+        System.debug('LeadScoreScheduler.counter: '+counter);
     }
 
     public void execute(SchedulableContext context) {
