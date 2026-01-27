@@ -23,5 +23,18 @@ private class LeadScoreTest {
         Test.stopTest();
 
         System.debug('counter: '+instance.counter);
+
+        Lead[] leads = [SELECT Name, Funny_Score__c FROM Lead];
+        for (Lead lead: leads) {
+            if (lead.Name.contains('Bob')) {
+                Lead lead1 = lead;
+                System.assertEquals(0, lead1.Funny_Score__c);
+            } else {
+                if (lead.Name.contains('Max')) {
+                    Lead lead2 = lead;
+                    System.assertEquals(+10, lead2.Funny_Score__c);
+                }
+            }
+        }
     }
 }
