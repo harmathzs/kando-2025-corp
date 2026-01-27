@@ -14,7 +14,9 @@ public without sharing class LeadScoreScheduler implements Database.Batchable<SO
             if (lead.Company.toLowerCase().contains('kazoo')) score += 10;
             if (lead.Company.toLowerCase().contains('waffle')) score += 10;
             Lead updatableLead = lead;
-            if (updatableLead.Funny_Score__c != null && updatableLead.Funny_Score__c != score)
+            if (updatableLead.Funny_Score__c == null ||
+                    (updatableLead.Funny_Score__c != null && updatableLead.Funny_Score__c != score)
+                )
             {
                 updatableLead.Funny_Score__c = score;
                 // update updatableLead;
@@ -23,7 +25,7 @@ public without sharing class LeadScoreScheduler implements Database.Batchable<SO
             }
 
         }
-        update updatableLeads;
+        if (!updatableLeads.isEmpty()) update updatableLeads;
     }
 
     public void finish(Database.BatchableContext context) {
