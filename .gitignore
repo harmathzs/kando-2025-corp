@@ -61,3 +61,5 @@ target/
 
 python
 *.py
+
+.proxyai
