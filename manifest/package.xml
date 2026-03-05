@@ -34,6 +34,8 @@
     </types>
     <types>
         <members>Lead</members>
+        <members>HTTP_Callout_Log_Entry__c</members>
+        <members>Callout_Log_Platform_Event__e</members>
         <name>CustomObject</name>
     </types>
     <types>

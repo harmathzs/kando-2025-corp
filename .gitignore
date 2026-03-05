@@ -63,3 +63,4 @@ python
 *.py
 
 .proxyai
+.vscode
