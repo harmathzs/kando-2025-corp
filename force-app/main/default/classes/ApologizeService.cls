@@ -12,7 +12,12 @@ public class ApologizeService {
     public static Boolean sendApologyEmail(String contactId, String whatId) {
 
         // Query the contact information
-        Contact contact = [SELECT Id, Email, FirstName, LastName FROM Contact WHERE Id = :contactId];
+        String trimmedContactId = contactId.trim();
+        Contact[] contacts = [SELECT Id, Email, FirstName, LastName FROM Contact WHERE Id = :trimmedContactId];
+        if (contacts.isEmpty()) {
+            return false;
+        }
+        Contact contact = contacts[0];
 
         // Query the email template
         EmailTemplate template =
@@ -33,7 +38,9 @@ public class ApologizeService {
         email.setTargetObjectId(contactId);
 
         // Set what ID if provided (associates email with an object like Case, Opportunity)
-        // TODO
+        if (String.isNotBlank(whatId)) {
+            email.setWhatId(whatId);
+        }
 
         // Set template ID
         email.setTemplateId(template.Id);
