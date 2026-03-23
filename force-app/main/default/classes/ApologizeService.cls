@@ -7,7 +7,9 @@ public class ApologizeService {
      * @param whatId Optional ID of an object to associate with the email (e.g., Case, Opportunity)
      * @return Boolean indicating whether the email was sent successfully
      */
-    public static Boolean sendApologyEmail(Id contactId, Id whatId) {
+
+    @AuraEnabled
+    public static Boolean sendApologyEmail(String contactId, String whatId) {
 
         // Query the contact information
         Contact contact = [SELECT Id, Email, FirstName, LastName FROM Contact WHERE Id = :contactId];
