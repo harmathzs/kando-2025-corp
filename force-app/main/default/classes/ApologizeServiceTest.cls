@@ -20,4 +20,8 @@ private class ApologizeServiceTest {
         ApologizeService.EmailSendResult result = ApologizeService.sendApologyEmail(contact.Id, null);
         System.debug('Email sent, result: '+result);
     }
+
+    // TODO test LWC method
+    // TODO test VF property
+    // TODO test Invocable Action method
 }
