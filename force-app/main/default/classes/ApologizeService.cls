@@ -13,33 +13,41 @@ public class ApologizeService {
         Contact contact = [SELECT Id, Email, FirstName, LastName FROM Contact WHERE Id = :contactId];
 
         // Query the email template
-
+        EmailTemplate template =
+            [SELECT
+                Id,
+                    Subject,
+                    HtmlValue,
+                    Body,
+                DeveloperName
+            FROM
+                EmailTemplate
+            WHERE DeveloperName='Apologize_Email_Template_1'];
 
         // Create the email message
-
+        Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
 
         // Set target object ID (Contact ID)
-
+        email.setTargetObjectId(contactId);
 
         // Set what ID if provided (associates email with an object like Case, Opportunity)
-
+        // TODO
 
         // Set template ID
-
+        email.setTemplateId(template.Id);
 
         // Set sender display name (optional)
         // 'Customer Support'
+        email.setSenderDisplayName('Customer Support');
 
         // Set save as activity flag (optional)
-
+        email.setSaveAsActivity(true);
 
         // Send the email
-
+        Messaging.sendEmail(new List<Messaging.Email>{email});
 
         // Check if email was sent successfully
-
-
-
+        // TODO
         return true;
 
 
