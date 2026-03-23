@@ -9,13 +9,50 @@ public class ApologizeService {
      */
 
     @AuraEnabled
-    public static Boolean sendApologyEmail(String contactId, String whatId) {
+    public static String sendApologyEmailLWC(String contactId, String whatId) {
+        EmailSendResult result = sendApologyEmail(contactId, whatId);
+        return JSON.serializePretty(result); // JS = JSON.stringify()
+    }
+
+    // Visualforce
+    public String contactId_VF { get; set; }
+    public Id whatId_VF { get; set; }
+
+    public EmailSendResult sendApologyEmailVF {
+        get {
+            return ApologizeService.sendApologyEmail(contactId_VF, whatId_VF);
+        }
+    }
+
+    public class InputParams {
+        @InvocableVariable
+        public String contactId;
+        @InvocableVariable
+        public Id whatId;
+    }
+
+    @InvocableMethod
+    public static List<String> sendApologyEmail_IA
+        (List<InputParams> inputs) {
+
+        List<String> results = new List<String>();
+        EmailSendResult emailSendResult = sendApologyEmail(inputs.get(0).contactId, inputs.get(0).whatId);
+        results.add(JSON.serializePretty(emailSendResult));
+        return results;
+    }
+
+    public static EmailSendResult sendApologyEmail(String contactId, Id whatId) {
+
 
         // Query the contact information
         String trimmedContactId = contactId.trim();
         Contact[] contacts = [SELECT Id, Email, FirstName, LastName FROM Contact WHERE Id = :trimmedContactId];
         if (contacts.isEmpty()) {
-            return false;
+            return new EmailSendResult(
+                    null,
+                    false,
+                    'Wrong contact id!'
+            );
         }
         Contact contact = contacts[0];
 
@@ -56,8 +93,11 @@ public class ApologizeService {
         Messaging.sendEmail(new List<Messaging.Email>{email});
 
         // Check if email was sent successfully
-        // TODO
-        return true;
+        return new EmailSendResult(
+            contactId,
+            true,
+            null
+        );
 
 
     }

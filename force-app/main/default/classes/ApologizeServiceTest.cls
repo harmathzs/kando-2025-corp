@@ -17,7 +17,7 @@ private class ApologizeServiceTest {
     @IsTest
     static void testBehavior() {
         Contact contact = [SELECT Id, Email, FirstName, LastName FROM Contact WHERE Email='kanalas@dzsordzs.ro'];
-        Boolean success = ApologizeService.sendApologyEmail(contact.Id, null);
-        System.debug('Email sent, success: '+success);
+        ApologizeService.EmailSendResult result = ApologizeService.sendApologyEmail(contact.Id, null);
+        System.debug('Email sent, result: '+result);
     }
 }
