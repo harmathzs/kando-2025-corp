@@ -24,4 +24,5 @@ private class ApologizeServiceTest {
     // TODO test LWC method
     // TODO test VF property
     // TODO test Invocable Action method
+    // TODO test contactId input error
 }
