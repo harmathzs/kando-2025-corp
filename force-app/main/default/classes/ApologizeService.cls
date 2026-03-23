@@ -10,7 +10,7 @@ public class ApologizeService {
     public static Boolean sendApologyEmail(Id contactId, Id whatId) {
 
         // Query the contact information
-
+        Contact contact = [SELECT Id, Email, FirstName, LastName FROM Contact WHERE Id = :contactId];
 
         // Query the email template
 
