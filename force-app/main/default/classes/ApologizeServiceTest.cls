@@ -21,7 +21,20 @@ private class ApologizeServiceTest {
         System.debug('Email sent, result: '+result);
     }
 
-    // TODO test LWC method
+    // test LWC method
+    @IsTest static void testLwc() {
+        Contact contact = [SELECT Id, Email, FirstName, LastName FROM Contact WHERE Email='kanalas@dzsordzs.ro'];
+        String json = ApologizeService.sendApologyEmailLWC(contact.Id, null);
+        System.debug('json: '+json);
+        /*
+        Map<String, Object> emailSendResult = (Map<String, Object>) JSON.deserializeUntyped(json);
+        System.assert(emailSendResult.containsKey('contactId'));
+        System.assert(emailSendResult.containsKey('success'));
+        System.assert(emailSendResult.containsKey('errorMessage'));
+        */
+
+    }
+
     // TODO test VF property
     // TODO test Invocable Action method
     // TODO test contactId input error
