@@ -1,0 +1,7 @@
+/*
+SELECT Id, ContractNumber,
+    (SELECT Id, Product2.Name, Quantity FROM ContractLineItems)
+FROM Contract WHERE Id = '800gL00000uW0sgQAC' LIMIT 1
+*/
+
+SELECT Id FROM ContractLineItem WHERE ContractId = '800gL00000uW0sgQAC' LIMIT 1
