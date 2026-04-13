@@ -1,6 +1,147 @@
-<apex:page renderAs="pdf">
-<!-- Begin Default Content REMOVE THIS -->
-<h1>Congratulations</h1>
-This is your new Page
-<!-- End Default Content REMOVE THIS -->
+<apex:page id="ContractPDF" renderAs="pdf"
+		   showHeader="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false"
+		   standardController="Contract" >
+	<html lang="en">
+		<head>
+			<style>
+				body {
+					font-family: "Arial Unicode MS";
+				}
+
+				/* Force a new page */
+				.page-break {
+					page-break-after: always;
+				}
+				.last-page {
+					page-break-after: avoid;
+				}
+
+				/* Prevent row splits in tables */
+				table, tr, td {
+					page-break-inside: avoid;
+				}
+
+
+				.unicode-text {
+					font-family: "Arial Unicode MS";
+				}
+
+				.formatted-text {
+					font-family: SansSerif;
+				}
+
+				.serif-text {
+					font-family: Times-Roman;
+				}
+
+				.monospaced-text {
+					font-family: Courier;
+				}
+
+				p {
+					/*text-align: justify;*/
+					/*text-indent: 18pt;*/
+				}
+
+				@page {
+					size: A4;
+					margin: 35mm 1cm 20mm;
+				}
+
+				/* Define different headers/footers for pages */
+
+				@page {
+					@top-center { content: element(header); }
+					@bottom-right { content: "Page " counter(page); }
+				}
+				@page:first {
+					@top-center { content: " "; }
+				}
+
+				div.header {
+					position: running(header);
+				}
+
+				/* Watermark container - full page fixed position */
+				.watermark {
+					position: fixed;
+					top: 35%;
+					left: 10%;
+					width: 70%;
+					font-size: 90px;
+					color: #666;
+					opacity: 0.15;
+					transform: rotate(-45deg);
+					white-space: nowrap;
+					z-index: -1;
+					pointer-events: none; /* Prevent interference with selectable text */
+					user-select: none;
+				}
+			</style>
+			<title></title>
+		</head>
+
+		<body>
+			<div class="watermark" style="display:none">WATERMARK</div>
+
+			<div class="header">
+				<table>
+					<tr>
+						<td>
+							<div style=
+								 "height: 9mm; width: 20mm; background-color: black; color: white; font-style: italic; font-size: large; padding: 3mm; text-align: right; float: left;"
+							></div>
+							<div style=
+								 "height: 9mm; width: 20mm; background-color: orange; color: black; font-style: italic; font-size: large; padding: 3mm; text-align: left; float: right;"
+							></div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="page-break">
+				<h1>SALES CONTRACT</h1>
+                <h1>nr. {!Contract.ContractNumber}</h1>
+				<p class="unicode-text"><span class="formatted-text"><b>This Sales Contract ("Contract")</b></span> is made and entered into as of <span class="formatted-text"><b>{!Contract.StartDate}</b></span> <br />
+                                        ("Effective Date"), by and between:</p>
+
+				<p class="unicode-text"><span class="formatted-text"><b>Kando Corp</b></span><br />
+                                        123 Imaginary Street,<br />
+                                        Budapest, Hungary<br />
+                                        (Hereinafter referred to as the "Seller")<br />
+                </p>
+
+				<p class="unicode-text">AND</p>
+
+				<p class="unicode-text"><span class="formatted-text"><b>{!Contract.Account.Name}</b></span><br />
+                                        {!Contract.Account.BillingCountryCode} 
+                                        {!Contract.Account.BillingState} 
+                                        {!Contract.Account.BillingCity} 
+                                        {!Contract.Account.BillingStreet}
+                                        <br />
+                                        (Hereinafter referred to as the "Buyer")<br />
+                </p>
+				<h2><u>1. PRODUCTS AND QUANTITIES</u></h2>
+                <p class="unicode-text">The Seller agrees to sell and the Buyer agrees to purchase the following products:</p>
+				<table border="1" cellpadding="4" cellspacing="0">
+					<thead>
+						<tr>
+							<th width="25%" class="formatted-text">Item</th>
+							<th width="25%" class="formatted-text">Quantity</th>
+							<th width="25%" class="formatted-text">Unit Price (EUR)</th>
+                            <th>EUR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="unicode-text">Árvíztűrő tükörfúrógép</td>
+							<td class="formatted-text"><strong>one</strong> <i>two</i> <u>three</u><sup>2</sup></td>
+							<td class="monospaced-text">print Hello;</td>
+                            <td class="unicode-text">Árvíztűrő tükörfúrógép</td>
+						</tr>
+					</tbody>
+				</table>                
+			</div>
+		</body>
+	</html>
 </apex:page>
