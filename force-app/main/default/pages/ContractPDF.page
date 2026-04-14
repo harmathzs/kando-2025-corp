@@ -133,12 +133,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="unicode-text">Árvíztűrő tükörfúrógép</td>
-							<td class="formatted-text"><strong>one</strong> <i>two</i> <u>three</u><sup>2</sup></td>
-							<td class="monospaced-text">print Hello;</td>
-                            <td class="unicode-text">Árvíztűrő tükörfúrógép</td>
-						</tr>
+						<apex:repeat value="{!contractProducts}" var="cp">
+							<tr>
+								<td class="unicode-text">{!cp.Product__r.Name}</td>
+								<td class="formatted-text">{!cp.Quantity__c}</td>
+								<td class="formatted-text">{!cp.Unit_Price__c}</td>
+								<td class="formatted-text">{!cp.Subtotal_Price__c}</td>
+							</tr>
+						</apex:repeat>
 					</tbody>
 				</table>                
 			</div>
