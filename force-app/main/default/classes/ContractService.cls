@@ -1,13 +1,29 @@
 
 public with sharing class ContractService {
     public Contract contract {get; set;}
+    public Contract_Product__c[] contractProducts {get; set;}
+
+    public Contract_Product__c[] queryContractProducts(Id contractId) {
+        return [
+            SELECT Id
+                ,Contract__c
+                ,Product__r.Name
+                ,Quantity__c
+                ,Unit_Price__c
+                ,Subtotal_Price__c
+            FROM Contract_Product__c
+            WHERE Contract__c = :contractId
+        ];
+    }
 
     public ContractService(ApexPages.StandardController controller) {
         contract = (Contract)controller.getRecord();
+        contractProducts = queryContractProducts(contract.Id);
     }
 
     public ContractService(Contract inContract) {
         contract = inContract;
+        contractProducts = queryContractProducts(contract.Id);
     }
 
     public ContractService(Id contractId) {
@@ -21,5 +37,6 @@ public with sharing class ContractService {
             , Total_Price__c
             , Total_Price_with_VAT__c
         FROM Contract WHERE Id = :contractId LIMIT 1];
+        contractProducts = queryContractProducts(contract.Id);
     }
 }
