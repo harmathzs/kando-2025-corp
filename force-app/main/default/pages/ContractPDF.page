@@ -1,6 +1,6 @@
 <apex:page id="ContractPDF" renderAs="pdf"
 		   showHeader="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false"
-		   standardController="Contract" >
+		   standardController="Contract" extensions="ContractService">
 	<html lang="en">
 		<head>
 			<style>
