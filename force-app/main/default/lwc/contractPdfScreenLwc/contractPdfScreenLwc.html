@@ -1,3 +1,26 @@
 <template>
-    
+    <lightning-card title="Contract PDF">
+        <div class="slds-p-around_medium">
+            {recordId}
+            <iframe src={pdfUrl}></iframe>
+        </div>
+    </lightning-card>
+
+    <!--  
+    <section role="dialog" class="slds-modal">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                header
+            </header>
+
+            <article class="slds-modal__content">
+                Contract Id: {recordId}
+            </article>
+
+            <footer class="slds-modal__footer">
+                footer
+            </footer>
+        </div>
+    </section>
+    -->
 </template>
